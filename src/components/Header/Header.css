@@ -1,0 +1,12 @@
+/* Header.css */
+
+/* Styles for the Header component */
+header {
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  /* Ensure the background image covers the entire header */
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
