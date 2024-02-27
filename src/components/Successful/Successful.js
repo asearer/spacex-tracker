@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import './Successful.css'; // Import CSS file for styling
 
 function Successful() {
-  // State to hold the successful launches data
+  // State to hold the successful launches data and selected launch details
   const [successfulLaunches, setSuccessfulLaunches] = useState([]);
+  const [selectedLaunch, setSelectedLaunch] = useState(null);
+  // State for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const launchesPerPage = 6; // Adjusted to display 12 launches per page
 
   // Fetch data from the API when the component mounts
   useEffect(() => {
@@ -16,19 +21,53 @@ function Successful() {
       .catch(error => console.log('Error fetching data:', error));
   }, []);
 
+  // Function to handle click on a successful launch item
+  const handleSuccessfulLaunchClick = (launch) => {
+    setSelectedLaunch(launch);
+  };
+
+  // Logic to calculate indexes of successful launches to display for the current page
+  const indexOfLastLaunch = currentPage * launchesPerPage;
+  const indexOfFirstLaunch = indexOfLastLaunch - launchesPerPage;
+  const currentLaunches = successfulLaunches.slice(indexOfFirstLaunch, indexOfLastLaunch);
+
+  // Logic to paginate
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <h2>Successful Launches</h2>
       <div className="successful-launches">
-        {/* Map through the successful launches array and display launch details */}
-        {successfulLaunches.map(launch => (
-          <div key={launch.id} className="successful-launch">
-            <h3>{launch.name}</h3>
-            <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
-            {/* You can add more details here */}
-          </div>
+        {/* Map through the current successful launches array and display launch details */}
+        <div className="successful-launch-grid">
+          {currentLaunches.map(launch => (
+            <div key={launch.id} className="successful-launch-item" onClick={() => handleSuccessfulLaunchClick(launch)}>
+              <button className="successful-launch-button">
+                <h3>{launch.name}</h3>
+                <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
+                {/* You can add more details here */}
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Pagination */}
+      <div className="pagination">
+        {Array.from({ length: Math.ceil(successfulLaunches.length / launchesPerPage) }, (_, index) => (
+          <button key={index} onClick={() => paginate(index + 1)}>
+            {index + 1}
+          </button>
         ))}
       </div>
+      {/* Display more details about the selected successful launch */}
+      {selectedLaunch && (
+        <div className="selected-successful-launch-details">
+          <h2>Selected Successful Launch</h2>
+          <h3>{selectedLaunch.name}</h3>
+          <p>Date: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
+          {/* Add more details as needed */}
+        </div>
+      )}
     </div>
   );
 }

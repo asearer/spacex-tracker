@@ -7,9 +7,10 @@ function Navbar() {
     <nav>
       <ul>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/launches">All Launches</Link></li>
+        
         <li><Link to="/upcominglaunches">Upcoming Launches</Link></li>
         <li><Link to="/pastlaunches">Past Launches</Link></li>
+        <li><Link to="/launches">All Launches</Link></li>
         <li><Link to="/successful">Successful</Link></li>
         <li><Link to="/failed">Failed</Link></li>
         <li><Link to="/links">Links</Link></li>
