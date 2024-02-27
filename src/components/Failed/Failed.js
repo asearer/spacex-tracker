@@ -8,7 +8,7 @@ function Failed() {
   const [showDetailsOverlay, setShowDetailsOverlay] = useState(false); // State to control overlay visibility
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const launchesPerPage = 6; 
+  const launchesPerPage = 6;
 
   // Fetch data from the API when the component mounts
   useEffect(() => {
@@ -23,7 +23,7 @@ function Failed() {
   }, []);
 
   // Function to handle click on a failed launch item
-  const handleFailedLaunchClick = (launch) => {
+  const handleFailedLaunchClick = launch => {
     setSelectedLaunch(launch);
     setShowDetailsOverlay(true); // Show overlay when a launch item is clicked
   };
@@ -36,10 +36,13 @@ function Failed() {
   // Logic to calculate indexes of failed launches to display for the current page
   const indexOfLastLaunch = currentPage * launchesPerPage;
   const indexOfFirstLaunch = indexOfLastLaunch - launchesPerPage;
-  const currentLaunches = failedLaunches.slice(indexOfFirstLaunch, indexOfLastLaunch);
+  const currentLaunches = failedLaunches.slice(
+    indexOfFirstLaunch,
+    indexOfLastLaunch
+  );
 
   // Logic to paginate
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -49,24 +52,31 @@ function Failed() {
         {/* Map through the current failed launches array and display launch details */}
         <div className="failed-launch-grid">
           {currentLaunches.map(launch => (
-            <div key={launch.id} className="failed-launch-item" onClick={() => handleFailedLaunchClick(launch)}>
+            <div
+              key={launch.id}
+              className="failed-launch-item"
+              onClick={() => handleFailedLaunchClick(launch)}
+            >
               <button className="failed-launch-button">
                 <h3>{launch.name}</h3>
-                
-                
               </button>
             </div>
           ))}
         </div>
       </div>
       {/* Pagination */}
-      <div className="pagination">
-        {Array.from({ length: Math.ceil(failedLaunches.length / launchesPerPage) }, (_, index) => (
-          <button key={index} onClick={() => paginate(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
-      </div>
+      {failedLaunches.length > launchesPerPage && (
+        <div className="pagination">
+          {Array.from(
+            { length: Math.ceil(failedLaunches.length / launchesPerPage) },
+            (_, index) => (
+              <button key={index} onClick={() => paginate(index + 1)}>
+                {index + 1}
+              </button>
+            )
+          )}
+        </div>
+      )}
       {/* Display more details about the selected failed launch using overlay */}
       {selectedLaunch && showDetailsOverlay && (
         <div className="failed-launch-overlay">
