@@ -8,7 +8,7 @@ function Failed() {
   const [showDetailsOverlay, setShowDetailsOverlay] = useState(false); // State to control overlay visibility
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const launchesPerPage = 6; // Adjusted to display 12 launches per page
+  const launchesPerPage = 4; // Adjusted to display 12 launches per page
 
   // Fetch data from the API when the component mounts
   useEffect(() => {

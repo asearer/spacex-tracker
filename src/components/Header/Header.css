@@ -3,10 +3,10 @@
 /* Styles for the Header component */
 header {
   color: red;
-  padding: 10px 0;
+  
   text-align: center;
   /* Ensure the background image covers the entire header */
   position: relative;
   overflow: hidden;
-  height: 100px;
+  height: 65px;
 }

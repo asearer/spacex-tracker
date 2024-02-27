@@ -15,7 +15,7 @@
 
 nav {
   background-color: darkslategray;
-  padding: 10px 20px;
+  
   animation: slideInFromBottom 1.5s ease; /* Apply animation */
 }
 

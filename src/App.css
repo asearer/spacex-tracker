@@ -1,9 +1,17 @@
-/* App.css */
+/* Remove default margin and padding from the body */
+body {
+  margin: 0;
+  padding: 0;
+}
 
 /* Styles for the main container */
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: blanchedalmond;
+  width: 100vw; /* Set width to full viewport width */
+  height: 100vh; /* Set height to full viewport height */
+  margin: 0;
+  padding: 0;
+  background: url('../public/bg-launch.jpg');
+  background-size: cover; /* Cover the entire container with the background image, maintaining aspect ratio and without distortion */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
 }

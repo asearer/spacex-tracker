@@ -13,7 +13,7 @@
 
 .past-launch-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  grid-template-columns: repeat(4, 1fr); /* Three columns */
   grid-auto-rows: minmax(200px, auto); /* Minimum row height of 200px, expand to fit content */
   gap: 20px;
 }

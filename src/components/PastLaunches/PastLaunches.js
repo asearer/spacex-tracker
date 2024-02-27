@@ -7,7 +7,7 @@ function PastLaunches() {
   const [selectedLaunch, setSelectedLaunch] = useState(null);
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const launchesPerPage = 6; // Adjusted to display 12 launches per page
+  const launchesPerPage = 4; // Number of launches to display per page
 
   // Fetch data from the API when the component mounts
   useEffect(() => {
