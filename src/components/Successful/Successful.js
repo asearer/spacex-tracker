@@ -5,6 +5,7 @@ function Successful() {
   // State to hold the successful launches data and selected launch details
   const [successfulLaunches, setSuccessfulLaunches] = useState([]);
   const [selectedLaunch, setSelectedLaunch] = useState(null);
+  const [showDetailsOverlay, setShowDetailsOverlay] = useState(false); // State to control overlay visibility
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const launchesPerPage = 4; // Number of launches to display per page
@@ -24,6 +25,7 @@ function Successful() {
   // Function to handle click on a successful launch item
   const handleSuccessfulLaunchClick = (launch) => {
     setSelectedLaunch(launch);
+    setShowDetailsOverlay(true); // Show overlay when a launch item is clicked
   };
 
   // Logic to calculate indexes of successful launches to display for the current page
@@ -59,13 +61,16 @@ function Successful() {
           </button>
         ))}
       </div>
-      {/* Display more details about the selected successful launch */}
-      {selectedLaunch && (
-        <div className="selected-successful-launch-details">
-          <h2>Selected Successful Launch</h2>
-          <h3>{selectedLaunch.name}</h3>
-          <p>Date: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
-          {/* Add more details as needed */}
+      {/* Display more details about the selected successful launch using overlay */}
+      {selectedLaunch && showDetailsOverlay && (
+        <div className="successful-launch-overlay">
+          <div className="successful-launch-details">
+            <h2>Selected Successful Launch</h2>
+            <h3>{selectedLaunch.name}</h3>
+            <p>Date: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
+            {/* Add more details as needed */}
+            <button onClick={() => setShowDetailsOverlay(false)}>Close</button>
+          </div>
         </div>
       )}
     </div>

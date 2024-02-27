@@ -1,7 +1,4 @@
-/* AllLaunches.css */
-
 .container {
-  padding: 20px;
   background-color: #f0f0f0;
   text-align: center;
 }
@@ -13,7 +10,7 @@
 
 .past-launch-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Three columns */
+  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* Adjusted to ensure minimum width of 200px for each column */
   grid-auto-rows: minmax(200px, auto); /* Minimum row height of 200px, expand to fit content */
   gap: 20px;
 }
@@ -31,7 +28,7 @@
 }
 
 .past-launch-button {
-  background-color: #007bff;
+  background-color: #28a745; /* Adjusted color for successful launches */
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -40,8 +37,8 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-.launch-button:hover {
-  background-color: #0056b3;
+.past-launch-button:hover {
+  background-color: #218838; /* Adjusted color for successful launches */
 }
 
 .pagination {
@@ -52,10 +49,9 @@
 }
 
 .pagination button {
-  background-color: #007bff;
+  background-color: #28a745; /* Adjusted color for successful launches */
   color: #fff;
   border: none;
-  border-radius: 4px;
   padding: 8px 16px;
   margin: 5px;
   cursor: pointer;
@@ -63,25 +59,46 @@
 }
 
 .pagination button:hover {
-  background-color: #0056b3;
+  background-color: #218838; /* Adjusted color for successful launches */
 }
 
-.selected-launch-details {
-  background-color: #fff;
+.selected-past-launch-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
 }
 
-.selected-launch-details h2 {
+.selected-past-launch-details h2 {
   margin-bottom: 10px;
 }
 
-.selected-launch-details h3 {
+.selected-past-launch-details h3,
+.selected-past-launch-details p {
   margin-bottom: 5px;
 }
 
-.selected-launch-details p {
-  margin-bottom: 5px;
+.past-launch-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure it's on top of other content */
+}
+
+.past-launch-details {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white;
 }

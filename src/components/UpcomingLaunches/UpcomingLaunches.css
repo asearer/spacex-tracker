@@ -1,7 +1,104 @@
-/* UpcomingLaunches.css */
 .container {
-  padding: 20px;
   background-color: #f0f0f0;
   text-align: center;
-  border: 1px solid #ccc;
+}
+
+.upcoming-launches {
+  display: flex;
+  justify-content: center;
+}
+
+.upcoming-launch-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* Adjusted to ensure minimum width of 200px for each column */
+  grid-auto-rows: minmax(200px, auto); /* Minimum row height of 200px, expand to fit content */
+  gap: 20px;
+}
+
+.upcoming-launch-item {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.upcoming-launch-item:hover {
+  transform: translateY(-5px);
+}
+
+.upcoming-launch-button {
+  background-color: #28a745; /* Adjusted color for successful launches */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.upcoming-launch-button:hover {
+  background-color: #218838; /* Adjusted color for successful launches */
+}
+
+.pagination {
+  display: grid; /* Use grid layout for pagination */
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Adjust the grid for pagination */
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #28a745; /* Adjusted color for successful launches */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.pagination button:hover {
+  background-color: #218838; /* Adjusted color for successful launches */
+}
+
+.selected-upcoming-launch-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.selected-upcoming-launch-details h2 {
+  margin-bottom: 10px;
+}
+
+.selected-upcoming-launch-details h3,
+.selected-upcoming-launch-details p {
+  margin-bottom: 5px;
+}
+
+.upcoming-launch-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure it's on top of other content */
+}
+
+.upcoming-launch-details {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white;
 }

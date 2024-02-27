@@ -9,6 +9,7 @@ function UpcomingLaunches() {
   const [upcomingStarshipLaunches, setUpcomingStarshipLaunches] = useState([]);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedLaunch, setSelectedLaunch] = useState(null);
   const [categoryError, setCategoryError] = useState(false);
 
   // Fetch data from the API when the component mounts
@@ -37,6 +38,11 @@ function UpcomingLaunches() {
   const handleCategorySelect = category => {
     setSelectedCategory(category);
     setCategoryError(false);
+    setSelectedLaunch(null); // Reset selected launch when a category is selected
+  };
+
+  const handleLaunchSelect = launch => {
+    setSelectedLaunch(launch);
   };
 
   let launches = [];
@@ -84,12 +90,23 @@ function UpcomingLaunches() {
         <div className="upcoming-launches">
           {/* Map through the filtered launches and display launch details */}
           {launches.map(launch => (
-            <div key={launch.id} className="upcoming-launch">
+            <div key={launch.id} className="upcoming-launch" onClick={() => handleLaunchSelect(launch)}>
               <h3>{launch.name}</h3>
               <p>Date: {launch.date_utc}</p>
               {/* You can add more details here */}
             </div>
           ))}
+        </div>
+      )}
+      {/* Overlay for selected launch details */}
+      {selectedLaunch && (
+        <div className="upcoming-launch-overlay" onClick={() => setSelectedLaunch(null)}>
+          <div className="selected-upcoming-launch-details" onClick={e => e.stopPropagation()}>
+            <h2>Selected Launch Details</h2>
+            <h3>{selectedLaunch.name}</h3>
+            <p>Date: {selectedLaunch.date_utc}</p>
+            {/* Add more details as needed */}
+          </div>
         </div>
       )}
     </div>

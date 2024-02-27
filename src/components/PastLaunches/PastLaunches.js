@@ -5,6 +5,7 @@ function PastLaunches() {
   // State to hold the past launches data and selected launch details
   const [pastLaunches, setPastLaunches] = useState([]);
   const [selectedLaunch, setSelectedLaunch] = useState(null);
+  const [showDetailsOverlay, setShowDetailsOverlay] = useState(false); // State to control overlay visibility
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const launchesPerPage = 4; // Number of launches to display per page
@@ -23,6 +24,7 @@ function PastLaunches() {
   // Function to handle click on a past launch item
   const handlePastLaunchClick = (launch) => {
     setSelectedLaunch(launch);
+    setShowDetailsOverlay(true); // Show overlay when a launch item is clicked
   };
 
   // Logic to calculate indexes of past launches to display for the current page
@@ -58,13 +60,16 @@ function PastLaunches() {
           </button>
         ))}
       </div>
-      {/* Display more details about the selected past launch */}
-      {selectedLaunch && (
-        <div className="selected-past-launch-details">
-          <h2>Selected Past Launch</h2>
-          <h3>{selectedLaunch.name}</h3>
-          <p>Date: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
-          {/* Add more details as needed */}
+      {/* Display more details about the selected past launch using overlay */}
+      {selectedLaunch && showDetailsOverlay && (
+        <div className="past-launch-overlay">
+          <div className="past-launch-details">
+            <h2>Selected Past Launch</h2>
+            <h3>{selectedLaunch.name}</h3>
+            <p>Date: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
+            <button onClick={() => setShowDetailsOverlay(false)}>Close</button>
+            {/* Add more details as needed */}
+          </div>
         </div>
       )}
     </div>

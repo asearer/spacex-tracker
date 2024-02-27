@@ -5,9 +5,10 @@ function AllLaunches() {
   // State to hold the launch data and selected launch details
   const [launches, setLaunches] = useState([]);
   const [selectedLaunch, setSelectedLaunch] = useState(null);
+  const [showDetailsOverlay, setShowDetailsOverlay] = useState(false); // State to control overlay visibility
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const launchesPerPage = 6; // Update launches per page to 12
+  const launchesPerPage = 4; // Number of launches to display per page
 
   // Fetch data from the API when the component mounts
   useEffect(() => {
@@ -20,6 +21,7 @@ function AllLaunches() {
   // Function to handle click on a launch item
   const handleLaunchClick = (launch) => {
     setSelectedLaunch(launch);
+    setShowDetailsOverlay(true); // Show overlay when a launch item is clicked
   };
 
   // Logic to calculate indexes of launches to display for the current page
@@ -55,14 +57,17 @@ function AllLaunches() {
           </button>
         ))}
       </div>
-      {/* Display more details about the selected launch */}
-      {selectedLaunch && (
-        <div className="selected-launch-details">
-          <h2>Selected Launch</h2>
-          <h3>{selectedLaunch.name}</h3>
-          <p>Date: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
-          <p>Success: {selectedLaunch.success ? 'Yes' : 'No'}</p>
-          {/* Add more details as needed */}
+      {/* Display more details about the selected launch using overlay */}
+      {selectedLaunch && showDetailsOverlay && (
+        <div className="launch-overlay">
+          <div className="launch-details">
+            <h2>Selected Launch</h2>
+            <h3>{selectedLaunch.name}</h3>
+            <p>Date: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
+            <p>Success: {selectedLaunch.success ? 'Yes' : 'No'}</p>
+            <button onClick={() => setShowDetailsOverlay(false)}>Close</button>
+            {/* Add more details as needed */}
+          </div>
         </div>
       )}
     </div>
