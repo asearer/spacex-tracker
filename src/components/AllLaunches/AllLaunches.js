@@ -42,8 +42,7 @@ function AllLaunches() {
             <div key={launch.id} className="launch-item" onClick={() => handleLaunchClick(launch)}>
               <button className="launch-button">
                 <h3>{launch.name}</h3>
-                <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
-                <p>Success: {launch.success ? 'Yes' : 'No'}</p>
+                
               </button>
             </div>
           ))}
