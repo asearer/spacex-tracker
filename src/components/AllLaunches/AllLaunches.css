@@ -1,6 +1,87 @@
 /* AllLaunches.css */
+
 .container {
   padding: 20px;
   background-color: #f0f0f0;
   text-align: center;
+}
+
+.launch-list {
+  display: flex;
+  justify-content: center;
+}
+
+.launch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  grid-auto-rows: minmax(200px, auto); /* Minimum row height of 200px, expand to fit content */
+  gap: 20px;
+}
+
+.launch-item {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.launch-item:hover {
+  transform: translateY(-5px);
+}
+
+.launch-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.launch-button:hover {
+  background-color: #0056b3;
+}
+
+.pagination {
+  display: grid; /* Use grid layout for pagination */
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Adjust the grid for pagination */
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.selected-launch-details {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.selected-launch-details h2 {
+  margin-bottom: 10px;
+}
+
+.selected-launch-details h3 {
+  margin-bottom: 5px;
+}
+
+.selected-launch-details p {
+  margin-bottom: 5px;
 }

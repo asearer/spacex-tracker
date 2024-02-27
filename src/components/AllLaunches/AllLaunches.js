@@ -7,7 +7,7 @@ function AllLaunches() {
   const [selectedLaunch, setSelectedLaunch] = useState(null);
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const launchesPerPage = 12;
+  const launchesPerPage = 6; // Update launches per page to 12
 
   // Fetch data from the API when the component mounts
   useEffect(() => {
@@ -35,15 +35,17 @@ function AllLaunches() {
       <h2>All Launches</h2>
       <div className="launch-list">
         {/* Map through the launches array and display launch details */}
-        {currentLaunches.map(launch => (
-          <div key={launch.id} className="launch-item" onClick={() => handleLaunchClick(launch)}>
-            <button className="launch-button">
-              <h3>{launch.name}</h3>
-              <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
-              <p>Success: {launch.success ? 'Yes' : 'No'}</p>
-            </button>
-          </div>
-        ))}
+        <div className="launch-grid">
+          {currentLaunches.map(launch => (
+            <div key={launch.id} className="launch-item" onClick={() => handleLaunchClick(launch)}>
+              <button className="launch-button">
+                <h3>{launch.name}</h3>
+                <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
+                <p>Success: {launch.success ? 'Yes' : 'No'}</p>
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
       {/* Pagination */}
       <div className="pagination">
