@@ -10,8 +10,8 @@
 
 .launch-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* Adjusted to ensure minimum width of 200px for each column */
-  grid-auto-rows: minmax(200px, auto); /* Minimum row height of 200px, expand to fit content */
+  grid-template-columns: repeat(5, minmax(120px, 1fr)); /* Adjusted to ensure minimum width of 200px for each column */
+  grid-auto-rows: minmax(120px, auto); /* Minimum row height of 200px, expand to fit content */
   gap: 20px;
 }
 

@@ -8,7 +8,7 @@ function AllLaunches() {
   const [showDetailsOverlay, setShowDetailsOverlay] = useState(false); // State to control overlay visibility
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const launchesPerPage = 4; // Number of launches to display per page
+  const launchesPerPage = 10; // Number of launches to display per page
 
   // Fetch data from the API when the component mounts
   useEffect(() => {

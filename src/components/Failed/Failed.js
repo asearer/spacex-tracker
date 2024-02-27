@@ -8,7 +8,7 @@ function Failed() {
   const [showDetailsOverlay, setShowDetailsOverlay] = useState(false); // State to control overlay visibility
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const launchesPerPage = 4; // Adjusted to display 12 launches per page
+  const launchesPerPage = 6; 
 
   // Fetch data from the API when the component mounts
   useEffect(() => {
@@ -52,7 +52,7 @@ function Failed() {
             <div key={launch.id} className="failed-launch-item" onClick={() => handleFailedLaunchClick(launch)}>
               <button className="failed-launch-button">
                 <h3>{launch.name}</h3>
-                <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
+                
                 
               </button>
             </div>
