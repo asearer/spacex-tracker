@@ -20,16 +20,20 @@ function App() {
       <Header />
       
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/launches" element={<AllLaunches />} />
-        <Route path="/upcominglaunches" element={<UpcomingLaunches />} />
-        <Route path="/pastlaunches" element={<PastLaunches />} />
-        <Route path="/successful" element={<Successful />} />
-        <Route path="/failed" element={<Failed />} />
-        <Route path="/links" element={<Links />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <div className="row">
+        <div className="col">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/launches" element={<AllLaunches />} />
+            <Route path="/upcominglaunches" element={<UpcomingLaunches />} />
+            <Route path="/pastlaunches" element={<PastLaunches />} />
+            <Route path="/successful" element={<Successful />} />
+            <Route path="/failed" element={<Failed />} />
+            <Route path="/links" element={<Links />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+      </div>
       
       <Footer />
     </div>
