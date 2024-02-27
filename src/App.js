@@ -11,14 +11,14 @@ import Successful from './components/Successful/Successful';
 import Failed from './components/Failed/Failed';
 import Links from './components/Links/Links';
 import About from './components/About/About';
-import CountdownTimer from './components/CountdownTimer/CountdownTimer'; // Import CountdownTimer component
+
 import './App.css'; // Import CSS file
 
 function App() {
   return (
     <div className="container">
       <Header />
-      <CountdownTimer /> {/* Include CountdownTimer component */}
+      
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

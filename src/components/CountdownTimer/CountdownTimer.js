@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import './CountdownTimer.css';
 
 function CountdownTimer() {
   const [launchTime, setLaunchTime] = useState(null);
 
   useEffect(() => {
-    fetchLaunchTime();
+    fetchLaunchTime(); // Initial fetch when the component mounts
+    const timerID = setInterval(fetchLaunchTime, 1000); // Fetch every second
+
+    // Cleanup function to clear the interval when the component unmounts
+    return () => clearInterval(timerID);
   }, []);
 
   const fetchLaunchTime = async () => {
