@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './AllLaunches.css';
 
 function AllLaunches() {
-  // State to hold the launch data
+  // State to hold the launch data and selected launch details
   const [launches, setLaunches] = useState([]);
+  const [selectedLaunch, setSelectedLaunch] = useState(null);
+  // State for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const launchesPerPage = 12;
 
   // Fetch data from the API when the component mounts
   useEffect(() => {
@@ -13,19 +17,52 @@ function AllLaunches() {
       .catch(error => console.log('Error fetching data:', error));
   }, []);
 
+  // Function to handle click on a launch item
+  const handleLaunchClick = (launch) => {
+    setSelectedLaunch(launch);
+  };
+
+  // Logic to calculate indexes of launches to display for the current page
+  const indexOfLastLaunch = currentPage * launchesPerPage;
+  const indexOfFirstLaunch = indexOfLastLaunch - launchesPerPage;
+  const currentLaunches = launches.slice(indexOfFirstLaunch, indexOfLastLaunch);
+
+  // Logic to paginate
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <h2>All Launches</h2>
       <div className="launch-list">
         {/* Map through the launches array and display launch details */}
-        {launches.map(launch => (
-          <div key={launch.id} className="launch-item">
-            <h3>{launch.name}</h3>
-            <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
-            <p>Success: {launch.success ? 'Yes' : 'No'}</p>
+        {currentLaunches.map(launch => (
+          <div key={launch.id} className="launch-item" onClick={() => handleLaunchClick(launch)}>
+            <button className="launch-button">
+              <h3>{launch.name}</h3>
+              <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
+              <p>Success: {launch.success ? 'Yes' : 'No'}</p>
+            </button>
           </div>
         ))}
       </div>
+      {/* Pagination */}
+      <div className="pagination">
+        {Array.from({ length: Math.ceil(launches.length / launchesPerPage) }, (_, index) => (
+          <button key={index} onClick={() => paginate(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
+      {/* Display more details about the selected launch */}
+      {selectedLaunch && (
+        <div className="selected-launch-details">
+          <h2>Selected Launch</h2>
+          <h3>{selectedLaunch.name}</h3>
+          <p>Date: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
+          <p>Success: {selectedLaunch.success ? 'Yes' : 'No'}</p>
+          {/* Add more details as needed */}
+        </div>
+      )}
     </div>
   );
 }
