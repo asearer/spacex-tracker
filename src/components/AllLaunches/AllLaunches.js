@@ -1,5 +1,6 @@
 // AllLaunches.js
 import React from 'react';
+import './AllLaunches.css';
 
 function AllLaunches() {
   return (

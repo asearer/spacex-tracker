@@ -1,5 +1,6 @@
 // UpcomingLaunches.js
 import React from 'react';
+import './UpcomingLaunches.css';
 
 function UpcomingLaunches() {
   return (

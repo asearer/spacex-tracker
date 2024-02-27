@@ -2,7 +2,7 @@
 
 /* Styles for the Header component */
 header {
-  color: #fff;
+  color: red;
   padding: 10px 0;
   text-align: center;
   /* Ensure the background image covers the entire header */

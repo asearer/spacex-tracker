@@ -1,5 +1,6 @@
 // Successful.js
 import React from 'react';
+import './Successful.css';
 
 function Successful() {
   return (

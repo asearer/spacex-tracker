@@ -1,10 +1,23 @@
 /* Home.css */
 
-/* Styles for the Home component */
 .home-container {
-  display: flex;
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
-  height: 100vh; /* Set height to 100% of viewport height */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.home-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
   text-align: center;
 }
+
+.home-text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
