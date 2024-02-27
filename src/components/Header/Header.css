@@ -8,5 +8,5 @@ header {
   /* Ensure the background image covers the entire header */
   position: relative;
   overflow: hidden;
-  height: 200px;
+  height: 100px;
 }
