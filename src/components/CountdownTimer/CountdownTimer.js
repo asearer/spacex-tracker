@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-
 function CountdownTimer() {
   const [launchTime, setLaunchTime] = useState(null);
 
   useEffect(() => {
-    // Fetch data from API and set the launch time
     fetchLaunchTime();
   }, []);
 
   const fetchLaunchTime = async () => {
     try {
-      // Fetch data from API
-      const response = await fetch('YOUR_API_ENDPOINT');
+      const response = await fetch('https://api.spacexdata.com/v4/launches/next');
       const data = await response.json();
 
-      // Assuming API returns launch time in ISO format
-      const nextLaunchTime = new Date(data.launchTime);
+      const nextLaunchTime = new Date(data.date_utc);
 
-      // Set the launch time in state
       setLaunchTime(nextLaunchTime);
     } catch (error) {
       console.error('Error fetching launch time:', error);
@@ -28,11 +23,9 @@ function CountdownTimer() {
   const calculateTimeRemaining = () => {
     if (!launchTime) return null;
 
-    // Calculate time difference between current time and launch time
     const currentTime = new Date();
     const timeDifference = launchTime - currentTime;
 
-    // Convert time difference to days, hours, minutes, seconds
     const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
