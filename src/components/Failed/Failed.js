@@ -44,6 +44,7 @@ function Failed() {
   return (
     <div>
       <h2>Failed Launches</h2>
+      <p>Find information on why some launches have failed </p>
       <div className="failed-launches">
         {/* Map through the current failed launches array and display launch details */}
         <div className="failed-launch-grid">
