@@ -25,7 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/launches" element={<AllLaunches />} />
-            <Route path="/upcominglaunches" element={<UpcomingLaunches />} />
+            
             <Route path="/pastlaunches" element={<PastLaunches />} />
             <Route path="/successful" element={<Successful />} />
             <Route path="/failed" element={<Failed />} />

@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './UpcomingLaunches.css';
 
 function UpcomingLaunches() {
-  // State to hold the upcoming launch data
   const [nextLaunch, setNextLaunch] = useState(null);
   const [error, setError] = useState(null);
 
-  // Fetch data from the API when the component mounts
   useEffect(() => {
     fetch('https://api.spacexdata.com/v4/launches/next')
       .then(response => {
@@ -16,29 +14,31 @@ function UpcomingLaunches() {
         return response.json();
       })
       .then(data => {
-        // Set the upcoming launch data
-        console.log('Next launch:', data);
+        console.log('Next launch data:', data); // Log the response data
         setNextLaunch(data);
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
         setError(error);
       });
   }, []);
 
+  // Function to format the date string to a human-readable format
+  const formatLaunchDate = dateStr => {
+    const date = new Date(dateStr);
+    return date.toLocaleString();
+  };
+
   return (
-    <div>
+    <div className="container">
       <h2>Next Launch</h2>
-      {error && (
-        <div>Error: {error.message}</div>
-      )}
       {nextLaunch && (
         <div className="next-launch">
           <h3>{nextLaunch.name}</h3>
-          <p>Date: {nextLaunch.date_utc}</p>
+          <p>Date: {formatLaunchDate(nextLaunch.date_utc)}</p>
           {/* Add more details here */}
         </div>
       )}
+      {error && <div>Error fetching data: {error.message}</div>}
     </div>
   );
 }
