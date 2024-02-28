@@ -46,8 +46,7 @@ function Successful() {
             <div key={launch.id} className="successful-launch-item" onClick={() => handleSuccessfulLaunchClick(launch)}>
               <button className="successful-launch-button">
                 <h3>{launch.name}</h3>
-                <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
-                {/* You can add more details here */}
+                
               </button>
             </div>
           ))}
