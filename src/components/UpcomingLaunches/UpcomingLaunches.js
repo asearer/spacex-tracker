@@ -80,23 +80,27 @@ function UpcomingLaunches() {
           </button>
         ))}
       </div>
-      {selectedCategory && launches.length === 0 && !error && (
-        <div>No information available for {selectedCategory} at this time.</div>
+      {selectedCategory && !error && (
+        <div>
+          {launches && launches.length === 0 && (
+            <div>No information available for {selectedCategory} at this time.</div>
+          )}
+          {launches && launches.length > 0 && (
+            <div className="upcoming-launches">
+              {/* Map through the filtered launches and display launch details */}
+              {launches.map(launch => (
+                <div key={launch.id} className="upcoming-launch" onClick={() => handleLaunchSelect(launch)}>
+                  <h3>{launch.name}</h3>
+                  <p>Date: {launch.date_utc}</p>
+                  {/* You can add more details here */}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       )}
       {error && (
         <div>Error: {error.message}</div>
-      )}
-      {launches.length > 0 && !error && (
-        <div className="upcoming-launches">
-          {/* Map through the filtered launches and display launch details */}
-          {launches.map(launch => (
-            <div key={launch.id} className="upcoming-launch" onClick={() => handleLaunchSelect(launch)}>
-              <h3>{launch.name}</h3>
-              <p>Date: {launch.date_utc}</p>
-              {/* You can add more details here */}
-            </div>
-          ))}
-        </div>
       )}
       {/* Overlay for selected launch details */}
       {selectedLaunch && (
