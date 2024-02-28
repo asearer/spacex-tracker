@@ -14,7 +14,12 @@ function UpcomingLaunches() {
 
   // Fetch data from the API when the component mounts
   useEffect(() => {
-    fetch('https://api.spacexdata.com/v4/launches/upcoming')
+    fetch('https://api.spacexdata.com/v4/launches/upcoming', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -24,10 +29,12 @@ function UpcomingLaunches() {
       .then(data => {
         // Set the upcoming launches data for each category
         console.log('All upcoming launches:', data);
-        setUpcomingFalcon1Launches(data.filter(launch => launch.rocket.name === 'Falcon 1'));
-        setUpcomingFalcon9Launches(data.filter(launch => launch.rocket.name === 'Falcon 9'));
-        setUpcomingFalconHeavyLaunches(data.filter(launch => launch.rocket.name === 'Falcon Heavy'));
-        setUpcomingStarshipLaunches(data.filter(launch => launch.rocket.name === 'Starship'));
+        
+        // Filter launches based on rocket names
+        setUpcomingFalcon1Launches(data.filter(launch => launch.cores.some(core => core.name && core.name.includes('Falcon 1'))));
+        setUpcomingFalcon9Launches(data.filter(launch => launch.cores.some(core => core.name && core.name.includes('Falcon 9'))));
+        setUpcomingFalconHeavyLaunches(data.filter(launch => launch.cores.some(core => core.name && core.name.includes('Falcon Heavy'))));
+        setUpcomingStarshipLaunches(data.filter(launch => launch.cores.some(core => core.name && core.name.includes('Starship'))));
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -80,27 +87,23 @@ function UpcomingLaunches() {
           </button>
         ))}
       </div>
-      {selectedCategory && !error && (
-        <div>
-          {launches && launches.length === 0 && (
-            <div>No information available for {selectedCategory} at this time.</div>
-          )}
-          {launches && launches.length > 0 && (
-            <div className="upcoming-launches">
-              {/* Map through the filtered launches and display launch details */}
-              {launches.map(launch => (
-                <div key={launch.id} className="upcoming-launch" onClick={() => handleLaunchSelect(launch)}>
-                  <h3>{launch.name}</h3>
-                  <p>Date: {launch.date_utc}</p>
-                  {/* You can add more details here */}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+      {selectedCategory && launches.length === 0 && !error && (
+        <div>No information available for {selectedCategory} at this time.</div>
       )}
       {error && (
         <div>Error: {error.message}</div>
+      )}
+      {launches.length > 0 && !error && (
+        <div className="upcoming-launches">
+          {/* Map through the filtered launches and display launch details */}
+          {launches.map(launch => (
+            <div key={launch.id} className="upcoming-launch" onClick={() => handleLaunchSelect(launch)}>
+              <h3>{launch.name}</h3>
+              <p>Date: {launch.date_utc}</p>
+              {/* You can add more details here */}
+            </div>
+          ))}
+        </div>
       )}
       {/* Overlay for selected launch details */}
       {selectedLaunch && (
